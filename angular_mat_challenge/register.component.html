@@ -1,0 +1,89 @@
+<div [class.dark-mode]="isDarkMode" class="theme-wrapper">
+
+  <mat-card class="gym-card success-card" *ngIf="submitted">
+    <mat-icon class="success-icon">verified</mat-icon>
+    <h1>WELCOME TO THE ELITE</h1>
+    <p>Your membership has been activated.</p>
+
+    <div class="id-badge">
+      <span class="label">MEMBER ID</span>
+      <span class="id-number">{{ generatedMemberId }}</span>
+    </div>
+
+    <button mat-stroked-button color="accent" (click)="resetForm()" class="mt-20">REGISTER ANOTHER</button>
+  </mat-card>
+
+  <mat-card class="gym-card" *ngIf="!submitted">
+    <div class="header-section">
+      <div class="title-group">
+        <mat-icon class="logo-icon">fitness_center</mat-icon>
+        <h1>ELITE FITNESS</h1>
+        <p class="subtitle">PREMIUM CLUB REGISTRATION</p>
+      </div>
+      <mat-slide-toggle (change)="toggleTheme()" [checked]="isDarkMode" color="primary">
+        {{ isDarkMode ? 'Dark' : 'Light' }}
+      </mat-slide-toggle>
+    </div>
+
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="userName">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-error *ngIf="formdata.get('password')?.invalid">Letter first, min 8 alphanumeric</mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput formControlName="email">
+        <mat-icon matSuffix>alternate_email</mat-icon>
+      </mat-form-field>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Birth Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>Must be 2006 or older</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Gym Package</mat-label>
+          <mat-select formControlName="gymPackage">
+            <mat-option value="basic">Basic (Gym Only)</mat-option>
+            <mat-option value="standard">Standard (Gym + Pool)</mat-option>
+            <mat-option value="premium">Premium (All Access)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="options-group">
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-checkbox formControlName="personalTrainer">Private Coach</mat-checkbox>
+      </div>
+
+      <div class="intensity-box">
+        <label>Commitment Intensity: <strong>{{formdata.value.workoutIntensity}}</strong></label>
+        <mat-slider min="1" max="10" step="1" discrete color="accent">
+          <input matSliderThumb formControlName="workoutIntensity">
+        </mat-slider>
+      </div>
+
+      <button mat-flat-button class="gold-btn" type="submit">JOIN THE ELITE</button>
+    </form>
+  </mat-card>
+</div>
