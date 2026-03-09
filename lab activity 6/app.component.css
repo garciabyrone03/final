@@ -1,0 +1,130 @@
+/* General Page Styling */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.title {
+  color: #ff9900;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Form Card Styling */
+.card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  width: 100%;            /* ✅ Fix: ensure card stretches full width */
+  box-sizing: border-box;
+}
+
+.form-control {
+  background: #2b2b2b !important;
+  border: 1px solid #444 !important;
+  color: #fff !important;
+  padding: 10px;
+  width: 100%;            /* ✅ Fix: inputs stretch to fill the card */
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.form-control:focus {
+  border-color: #ff9900 !important;
+  box-shadow: 0 0 8px rgba(255, 153, 0, 0.4);
+  outline: none;
+}
+
+/* Button Styling */
+.btn-add {
+  background: #ff9900;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  transition: 0.3s;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-add:hover {
+  background: #e68a00;
+  transform: translateY(-2px);
+}
+
+/* Table Styling */
+.table {
+  background: #1e1e1e;
+  color: #fff !important;
+  border-radius: 10px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;            /* ✅ Fix: table stretches full width */
+  table-layout: fixed;    /* ✅ Fix: columns share width evenly */
+}
+
+.table th {
+  background: #ff9900 !important;
+  color: #000 !important;
+  padding: 15px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-align: left;       /* ✅ Fix: consistent text alignment */
+}
+
+.table td {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  vertical-align: middle;
+  color: #eee !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table tr:hover td {
+  background: #252525;    /* ✅ Fix: hover targets td, not tr (works with border-collapse: separate) */
+}
+
+.btn-edit {
+  background: #444;
+  color: #ff9900;
+  border: 1px solid #ff9900;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-delete {
+  background: #cc0000;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete:hover { background: #ff3333; }
+.btn-edit:hover { background: #ff9900; color: #000; }
+
+.empty {
+  padding: 40px;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

@@ -1,0 +1,66 @@
+<div class="container">
+  <h2 class="title">📖 Book Hub</h2>
+
+  <div class="card shadow-sm">
+    <div class="row g-2">
+      <div class="col-md-2">
+        <input id="newBook" class="form-control" placeholder="Book Title">
+      </div>
+      <div class="col-md-2">
+        <input id="newDesc" class="form-control" placeholder="Description">
+      </div>
+      <div class="col-md-2">
+        <input id="newPrice" class="form-control" placeholder="Price">
+      </div>
+      <div class="col-md-2">
+        <input id="newAuthor" class="form-control" placeholder="Author Name">
+      </div>
+      <div class="col-md-2">
+        <input id="newGenre" class="form-control" placeholder="Genre">
+      </div>
+      <div class="col-md-2">
+        @if (editingId == null) {
+          <button class="btn btn-add w-100" (click)="addBook()">Add to Hub</button>
+        } @else {
+          <button class="btn btn-warning w-100" (click)="updateBook()">Update Book</button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (book of books; track (book.id || book._id)) {
+      <tr>
+        <td>{{ book.title || book.Title }}</td>
+        <!-- ✅ FIX: book.desc first since MongoDB stores it as desc -->
+        <td>{{ book.desc || book.description || book.Description }}</td>
+        <td>${{ book.price || book.Price }}</td>
+        <!-- ✅ These were already correct, author/genre saved properly -->
+        <td>{{ book.author || book.Author }}</td>
+        <td>{{ book.genre || book.Genre }}</td>
+        <td>
+          <button class="btn-edit" (click)="editBook(book)">Edit</button>
+          <button class="btn-delete" (click)="deleteBook(book.id || book._id || book.Id)">Delete</button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="6" class="empty">The Hub is currently empty. Add a book!</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<router-outlet />
